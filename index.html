@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="i.png" type="image/x-icon">
+    <title>Football.com</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <form autocomplete="off" name="submit-to-google-sheet">
+            <h3>Football Player Form</h3>
+            <input type="text" placeholder="Your Name" name="Name" required>
+            <input type="number" placeholder="Phone Number" name="Number" required>
+            <input type="number" placeholder="Jersey No." name="Jersey" required>
+
+            <select name="Posion">
+                <option>Select Your Possession</option>
+                <option>GK</option>
+                <option>CB</option>
+                <option>LB</option>
+                <option>RB</option>
+                <option>DMF</option>
+                <option>CMF</option>
+                <option>LMF</option>
+                <option>RMF</option>
+                <option>AMF</option>
+                <option>LWF</option>
+                <option>RWF</option>
+                <option>CF</option>
+                <option>SS</option>
+            </select>
+            <select name="Playing Style">
+                <option>Playing Style</option>
+                <option>GK: Attacking Goalkepper</option>
+                <option>GK: Defensive Goalkepper</option>
+                <option>CB: Build Up</option>
+                <option>CB: Extra Frontman</option>
+                <option>CB: The Destroyer</option>
+                <option>LB: Attacking Full-back</option>
+                <option>LB: Defensive Full-back</option>
+                <option>LB: Full-back Finisher</option>
+                <option>LB: Cross Specialist</option>
+                <option>RB: Attacking Full-back</option>
+                <option>RB: Defensive Full-back</option>
+                <option>RB: Full-back Finisher</option>
+                <option>RB: Cross Specialist</option>
+                <option>DMF: Box-to-Box</option>
+                <option>DMF: Anchor Man</option>
+                <option>DMF: The Destroyer</option>
+                <option>DMF: Orchestrator</option>
+                <option>CMF: Box-to-Box</option>
+                <option>CMF: The Destroyer</option>
+                <option>CMF: Orchestrator</option>
+                <option>CMF: Hole Player</option>
+                <option>CMF: Classic No. 10</option>
+                <option>CMF: Creative Playmaker</option>
+                <option>LMF: Creative Playmaker</option>
+                <option>LMF: Prolific Winger</option>
+                <option>LMF: Roaming Flank</option>
+                <option>LMF: Cross Specialist</option>
+                <option>LMF: Hole Player</option>
+                <option>RMF: Hole Player</option>
+                <option>RMF: Cross Specialist</option>
+                <option>RMF: Creative Playmaker</option>
+                <option>AMF: Hole Player</option>
+                <option>AMF: Classic No. 10</option>
+                <option>AMF: Creative Playmaker</option>
+                <option>LWF: Creative Playmaker</option>
+                <option>LWF: Prolific Winger</option>
+                <option>LWF: Roaming Flank</option>
+                <option>RWF: Prolific Winger</option>
+                <option>RWF: Roaming Flank</option>
+                <option>RWF: Creative Playmaker</option>
+                <option>CF: Goal Poacher</option>
+                <option>CF: Dummy Runner</option>
+                <option>CF: Fox in the Box</option>
+                <option>CF: Target Man</option>
+                <option>CF: Deep-Lying Forward</option>
+                <option>SS: Creative Playmaker</option>
+                <option>SS: Classic No. 10</option>
+                <option>SS: Hole Player</option>
+                <option>SS: Dummy Runner</option>
+            </select>
+            <select name="Level">
+                <option>Select Your Level</option>
+                <option>80</option>
+                <option>81</option>
+                <option>82</option>
+                <option>83</option>
+                <option>84</option>
+                <option>85</option>
+                <option>86</option>
+                <option>87</option>
+            </select>
+
+            <button type="submit">Submit</button>
+            <button type="reset" class="reset">Reset</button>
+
+        </form>
+        <span id="msg"></span>
+    </div>
+
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzsoPTyKeatMzb5Npk5ewMUIv0QclowfsWoLN7XgC8lYaggZ_DP-jV1oZhGwF3LgRF1/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML = ""
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                },5000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</body>
+
+</html>
